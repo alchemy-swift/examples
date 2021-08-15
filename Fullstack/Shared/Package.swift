@@ -1,4 +1,4 @@
-// swift-tools-version:5.3
+// swift-tools-version:5.4
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
@@ -13,14 +13,13 @@ let package = Package(
         .library(name: "Shared", targets: ["Shared"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/alchemy-swift/alchemy", .upToNextMinor(from: "0.1.0"))
+        .package(url: "https://github.com/alchemy-swift/papyrus", .branch("main"))
     ],
     targets: [
         .target(
             name: "Shared",
             dependencies: [
-                .product(name: "Fusion", package: "alchemy"),
-                .product(name: "Papyrus", package: "alchemy")
+                .product(name: "Papyrus", package: "papyrus"),
             ]
         ),
     ]

@@ -1,60 +1,40 @@
 import Papyrus
 
 public final class AuthAPI: EndpointGroup {
-    @POST("/signup")
-    public var signup: Endpoint<SignupRequest, TokenDTO>
+    @POST("/signup") public var signup: Endpoint<SignupRequest, TokenDTO>
+    @POST("/login")  public var login: Endpoint<LoginRequest, TokenDTO>
     
-    @POST("/login")
-    public var login: Endpoint<LoginRequest, TokenDTO>
+    public let baseURL: String
+    
+    public init(baseURL: String) {
+        self.baseURL = baseURL
+    }
 }
 
 extension AuthAPI {
-    
-    // MARK: - AuthAPI Requests
-
     /// Request data for creating a new user.
-    public struct SignupRequest: EndpointRequest {
-        public struct DTO: Codable {
-            public let name: String
-            public let email: String
-            public let password: String
-            
-            public init(name: String, email: String, password: String) {
-                self.name = name
-                self.email = email
-                self.password = password
-            }
-        }
+    public struct SignupRequest: RequestBody {
+        public let name: String
+        public let email: String
+        public let password: String
         
-        @Body
-        public var dto: DTO
-        
-        public init(_ dto: DTO) {
-            self.dto = dto
+        public init(name: String, email: String, password: String) {
+            self.name = name
+            self.email = email
+            self.password = password
         }
     }
     
     /// Request data for logging in.
-    public struct LoginRequest: EndpointRequest {
-        public struct DTO: Codable {
-            public let email: String
-            public let password: String
-            
-            public init(email: String, password: String) {
-                self.email = email
-                self.password = password
-            }
-        }
+    public struct LoginRequest: RequestBody {
+        public let email: String
+        public let password: String
         
-        @Body
-        public var dto: DTO
-        
-        public init(dto: DTO) {
-            self.dto = dto
+        public init(email: String, password: String) {
+            self.email = email
+            self.password = password
         }
     }
-    
-    // MARK: - AuthAPI DTOs
     
     /// An auth token to include in an "Authorization: Bearer ..."
     /// header.

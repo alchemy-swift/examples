@@ -10,49 +10,46 @@ struct AuthView: View {
     var body: some View {
         VStack {
             VStack {
-                Text(self.isLogin ? "Login" : "Signup")
+                Text(isLogin ? "Login" : "Signup")
                     .font(.title)
-                if !self.isLogin {
-                    TextField("Your name", text: self.$name).field()
+                if !isLogin {
+                    TextField("Your name", text: $name).field()
                 }
-                TextField("Email", text: self.$email).field()
-                SecureField("Password", text: self.$password).field()
+                TextField("Email", text: $email).field()
+                SecureField("Password", text: $password).field()
             }.padding()
-            VStack {
-                Button(self.isLogin ? "Login" : "Signup", action: self.isLogin ? self.login : self.signup)
-                    .padding(.bottom)
-                Button(self.isLogin ? "Signup instead" : "Login instead") {
-                    self.isLogin.toggle()
-                }
+            VStack(spacing: 16) {
+                Button(isLogin ? "Login" : "Signup", action: isLogin ? login : signup)
+                Button(isLogin ? "Signup instead" : "Login instead") { isLogin.toggle() }
             }.padding()
         }
-        .alert(isPresented: self.$showAlert) {
+        .alert(isPresented: $showAlert) {
             Alert(title: Text("Invalid info"), message: Text("Ensure all fields are filled in."))
         }
     }
     
     private func login() {
-        guard !self.email.isEmpty && !self.password.isEmpty else {
-            self.showAlert = true
+        guard !email.isEmpty && !password.isEmpty else {
+            showAlert = true
             return
         }
         
-        Storage.shared.login(email: self.email, password: self.password)
+        Storage.shared.login(email: email, password: password)
     }
     
     private func signup() {
-        guard !self.name.isEmpty && !self.email.isEmpty && !self.password.isEmpty else {
-            self.showAlert = true
+        guard !name.isEmpty && !email.isEmpty && !password.isEmpty else {
+            showAlert = true
             return
         }
         
-        Storage.shared.signup(name: self.name, email: self.email, password: self.password)
+        Storage.shared.signup(name: name, email: email, password: password)
     }
 }
 
 extension View {
     func field() -> some View {
-        self.padding(.leading, 24)
+        padding(.leading, 24)
             .frame(height: 54)
             .background(Color(red: 0.925, green: 0.941, blue: 0.945))
             .cornerRadius(4)
