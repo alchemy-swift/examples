@@ -1,7 +1,7 @@
 import Alchemy
 
 extension App {
-    /// Configure the application's Redis provider.
+    /// Use this function to configure the application's Redis provider.
     func redis() {
         Redis.config(default: .connection("localhost"))
         

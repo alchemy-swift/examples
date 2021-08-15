@@ -1,7 +1,7 @@
 import Alchemy
 
 extension App {
-    /// Configure the application's scheduled tasks & jobs.
+    /// Use this function to configure the application's scheduled tasks & jobs.
     func scheduler() {
         schedule(job: CleanupTokens()).daily()
         

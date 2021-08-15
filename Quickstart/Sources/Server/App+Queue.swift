@@ -1,7 +1,7 @@
 import Alchemy
 
 extension App {
-    /// Configure the application's job queues.
+    /// Use this function to configure the application's job queues.
     func queue() {
         Queue.config(default: .redis())
         Queue.config("database", .database(.named("mysql")))

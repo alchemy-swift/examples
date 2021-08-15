@@ -1,7 +1,7 @@
 import Alchemy
 
 extension App {
-    /// Configure the application's SQL databases.
+    /// Use this function to configure the application's SQL databases.
     func database() {
         Database.config(default: .postgres(
             host: Env.DB_HOST,
