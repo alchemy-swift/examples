@@ -5,8 +5,8 @@ struct App: Application {
     /// Boot the application.
     func boot() {
         database()
-        queue()
         redis()
+        queue()
         router()
         scheduler()
     }
