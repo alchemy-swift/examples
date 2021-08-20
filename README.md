@@ -4,5 +4,5 @@ This repository contains ready to use Alchemy example apps. These projects are u
 
 | App | Description |
 | - | - |
-| [Quickstart](/Quickstart) | A basic Alchemy app. |
+| [Server](/Server) | A basic Alchemy server app. |
 | [Fullstack](/Fullstack) | A fullstack project containing Server and iOS targets with a Shared framework. Demonstrates using [Papyrus](https://github.com/alchemy-swift/papyrus) to keep your APIs typesafe between client and server. |
