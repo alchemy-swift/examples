@@ -10,8 +10,7 @@ let package = Package(
         .executable(name: "Server", targets: ["Server"]),
     ],
     dependencies: [
-//        .package(url: "https://github.com/alchemy-swift/alchemy", .branch("main")),
-        .package(name: "alchemy", path: "../../../Alchemy"),
+        .package(url: "https://github.com/alchemy-swift/alchemy", .branch("main")),
         .package(path: "../Shared"),
     ],
     targets: [
