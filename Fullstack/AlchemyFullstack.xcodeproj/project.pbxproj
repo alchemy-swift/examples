@@ -29,7 +29,7 @@
 		0309B48725AD8A8300386B59 /* CreateTodoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTodoView.swift; sourceTree = "<group>"; };
 		0309B48D25AE546A00386B59 /* ActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButton.swift; sourceTree = "<group>"; };
 		0335BE492582ABF1007E3800 /* Shared */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Shared; sourceTree = "<group>"; };
-		0335BE4A2582AC02007E3800 /* Backend */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Backend; sourceTree = "<group>"; };
+		0335BE4A2582AC02007E3800 /* Server */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Server; sourceTree = "<group>"; };
 		03888DE025AD2DBC00E3E4B7 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
 		03888DE425AD2DD300E3E4B7 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		03889DED25AD37290000FDB0 /* Storage+API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Storage+API.swift"; sourceTree = "<group>"; };
@@ -53,7 +53,7 @@
 			isa = PBXGroup;
 			children = (
 				0300F7992582A74E003A1238 /* iOS */,
-				0335BE4A2582AC02007E3800 /* Backend */,
+				0335BE4A2582AC02007E3800 /* Server */,
 				0335BE492582ABF1007E3800 /* Shared */,
 				0300F7982582A74E003A1238 /* Products */,
 				036E775E2582ACFD00B39231 /* Frameworks */,
