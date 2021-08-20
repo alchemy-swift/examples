@@ -13,10 +13,13 @@ struct AuthView: View {
                 Text(isLogin ? "Login" : "Signup")
                     .font(.title)
                 if !isLogin {
-                    TextField("Your name", text: $name).field()
+                    TextField("Your name", text: $name)
+                        .field(capitalization: .words)
                 }
-                TextField("Email", text: $email).field()
-                SecureField("Password", text: $password).field()
+                TextField("Email", text: $email)
+                    .field(capitalization: .none, keyboard: .emailAddress)
+                SecureField("Password", text: $password)
+                    .field()
             }.padding()
             VStack(spacing: 16) {
                 Button(isLogin ? "Login" : "Signup", action: isLogin ? login : signup)
@@ -48,10 +51,12 @@ struct AuthView: View {
 }
 
 extension View {
-    func field() -> some View {
+    func field(capitalization: UITextAutocapitalizationType = .sentences, keyboard: UIKeyboardType = .default) -> some View {
         padding(.leading, 24)
             .frame(height: 54)
             .background(Color(red: 0.925, green: 0.941, blue: 0.945))
             .cornerRadius(4)
+            .autocapitalization(capitalization)
+            .keyboardType(keyboard)
     }
 }

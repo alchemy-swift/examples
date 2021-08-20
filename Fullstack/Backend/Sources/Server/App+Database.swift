@@ -6,19 +6,20 @@ extension App {
         Database.config(default: .postgres(
             host: Env.DB_HOST,
             database: "alchemy",
-            username: "",
-            password: ""
+            username: "josh",
+            password: "password"
         ))
         
         Database.config("mysql", .mysql(
             host: Env.DB_HOST,
             database: "alchemy",
-            username: "",
-            password: ""
+            username: "user",
+            password: "password"
         ))
         
         Database.default.migrations = [
-            CreateUsersTable()
+            CreateUsersTable(),
+            CreateTodosTable()
         ]
     }
 }

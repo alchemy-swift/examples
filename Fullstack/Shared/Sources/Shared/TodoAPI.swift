@@ -7,15 +7,24 @@ public final class TodoAPI: EndpointGroup {
     @PATCH("/todo/:todoID")  public var complete: Endpoint<CompleteTodoRequest, TodoDTO>
     
     public let baseURL: String
-    public let getToken: () -> String?
+    public let getToken: (() -> String?)?
     
+    /// Server initializer; will be providing the endpoints so it
+    /// doesn't need any baseURL or token.
+    public init() {
+        self.baseURL = ""
+        self.getToken = nil
+    }
+    
+    /// Client initializer; will be requesting the endpoints so it
+    /// will need a baseURL and token closure.
     public init(baseURL: String, getToken: @escaping () -> String?) {
         self.baseURL = baseURL
         self.getToken = getToken
     }
     
     public func intercept(_ components: inout HTTPComponents) {
-        if let token = getToken() {
+        if let token = getToken?() {
             components.headers["Authorization"] = "Bearer \(token)"
         }
     }

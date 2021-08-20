@@ -5,8 +5,8 @@ public final class AuthAPI: EndpointGroup {
     @POST("/login")  public var login: Endpoint<LoginRequest, TokenDTO>
     
     public let baseURL: String
-    
-    public init(baseURL: String) {
+
+    public init(baseURL: String = "") {
         self.baseURL = baseURL
     }
 }

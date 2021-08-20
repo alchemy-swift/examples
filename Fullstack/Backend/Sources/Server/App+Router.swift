@@ -14,10 +14,6 @@ extension App {
         
         // Authenticate subsequent requests by token.
         use(UserToken.tokenAuthMiddleware())
-
-        get("/email") { req -> String in
-            let user = try req.get(User.self)
-            return user.email
-        }
+        controller(TodoController())
     }
 }

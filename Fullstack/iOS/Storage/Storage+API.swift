@@ -2,9 +2,9 @@ import PapyrusAlamofire
 import Shared
 
 private enum API {
-    static let baseURL = "http://localhost:8080"
+    static let baseURL = "http://localhost:3000"
     static let auth = AuthAPI(baseURL: baseURL)
-    static let todo = TodoAPI(baseURL: baseURL) { Storage.shared.authToken }
+    static let todo = TodoAPI(baseURL: baseURL, getToken: { Storage.shared.authToken })
 }
 
 // Simple extensions for loading the APIs defined with Papyrus.
@@ -62,7 +62,7 @@ extension Storage {
 
 extension Endpoint {
     func request(_ req: Request, completion: @escaping (Response) -> Void) {
-        self.request(req) { _, result in
+        request(req) { _, result in
             switch result {
             case .success(let res):
                 completion(res)

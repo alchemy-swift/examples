@@ -17,6 +17,10 @@ final class Storage: ObservableObject {
     }
     
     init() {
-        self.authToken = UserDefaults().string(forKey: "auth_token")
+        authToken = UserDefaults().string(forKey: "auth_token")
+    }
+    
+    func logout() {
+        authToken = nil
     }
 }

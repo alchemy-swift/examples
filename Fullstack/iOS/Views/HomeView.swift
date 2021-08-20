@@ -2,10 +2,8 @@ import Foundation
 import SwiftUI
 
 struct HomeView: View {
-    @State private var showActionSheet: Bool = false
-    @State private var showCreate = false
-    
     @ObservedObject private var storage = Storage.shared
+    @State private var showCreate = false
     
     var body: some View {
         NavigationView {
@@ -13,18 +11,14 @@ struct HomeView: View {
                 List {
                     ForEach(storage.todos) { todo in
                         HStack {
-                            VStack(alignment: .leading) {
-                                Text(todo.name)
-                                    .font(.title2)
-                            }
+                            Text(todo.name)
+                                .font(.title2)
                             Spacer()
                             Image(systemName: todo.isComplete ? "checkmark.square": "square")
                         }
                         .padding(5.0)
                         .background(Color.white)
-                        .onTapGesture {
-                            toggle(todo: todo)
-                        }
+                        .onTapGesture { toggle(todo: todo) }
                     }
                     .onDelete(perform: delete)
                 }
@@ -33,22 +27,13 @@ struct HomeView: View {
                     Spacer()
                     HStack {
                         Spacer()
-                        ActionButton { showActionSheet = true }
+                        ActionButton { showCreate = true }
                     }
                 }
             }
-            .navigationTitle("Your Todos")
-            .onAppear {
-                storage.getTodos()
-            }
-            .actionSheet(isPresented: $showActionSheet) {
-                ActionSheet(
-                    title: Text("Create"),
-                    buttons: [
-                        .default(Text("Todo")) { showCreate = true },
-                        .cancel(Text("Cancel")),
-                    ])
-            }
+            .toolbar { Button("Logout", action: storage.logout) }
+            .navigationTitle("My Todos")
+            .onAppear { storage.getTodos() }
             .sheet(isPresented: $showCreate, content: { CreateTodoView() })
         }
     }
