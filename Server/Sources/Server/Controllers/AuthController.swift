@@ -26,9 +26,8 @@ struct AuthController: Controller {
     }
     
     private func login(req: Request) throws -> EventLoopFuture<UserToken> {
-        let user = try req.get(User.self)
-        let newToken = UserToken(user: .init(user))
-        return newToken.save()
+        return try req.get(User.self)
+            .createNewToken()
     }
 }
 

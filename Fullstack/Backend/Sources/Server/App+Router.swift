@@ -6,7 +6,7 @@ extension App {
         useAll(LoggingMiddleware())
         useAll(StaticFileMiddleware())
 
-        get("/hello") { _ in
+        get("/") { _ in
             return HomeView(greetings: ["Hola", "Bonjour", "Hello", "Hallo", "Ola"], name: "Josh")
         }
         
