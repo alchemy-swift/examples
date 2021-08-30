@@ -1,8 +1,8 @@
-    import XCTest
-    @testable import Server
+import XCTest
+@testable import Server
 
-    final class ServerTests: XCTestCase {
-        func testExample() {
-            
-        }
+final class ServerTests: XCTestCase {
+    func testExample() {
+        
     }
+}

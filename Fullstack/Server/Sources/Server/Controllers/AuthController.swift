@@ -36,7 +36,6 @@ struct AuthController: Controller {
 private extension User {
     /// Creates a new token for this user.
     func createNewToken() -> EventLoopFuture<UserToken> {
-        return UserToken(user: .init(self))
-            .save()
+        return UserToken(user: self).save()
     }
 }

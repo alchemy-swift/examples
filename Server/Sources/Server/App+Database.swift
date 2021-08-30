@@ -18,6 +18,7 @@ extension App {
         ))
         
         Database.default.migrations = [
+            Queue.AddJobsMigration(),
             CreateUsersTable()
         ]
     }

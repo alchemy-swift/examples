@@ -25,7 +25,7 @@ struct TodoController: Controller {
     
     private func create(req: Request, dto: TodoAPI.CreateTodoRequest) throws -> EventLoopFuture<TodoAPI.TodoDTO> {
         let user = try req.get(User.self)
-        return Todo(name: dto.name, isComplete: false, user: .init(user))
+        return Todo(name: dto.name, isComplete: false, user: user)
             .insert()
             .map { $0.toDTO() }
     }
