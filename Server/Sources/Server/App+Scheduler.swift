@@ -6,6 +6,6 @@ extension App {
         schedule(job: CleanupTokens()).daily()
         
         schedule { Log.info("Happy Friday!") }
-            .weekly(day: .fri, hour: 9)
+            .weekly(day: .fri, hr: 9)
     }
 }

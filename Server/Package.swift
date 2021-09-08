@@ -10,7 +10,7 @@ let package = Package(
         .executable(name: "Server", targets: ["Server"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/alchemy-swift/alchemy", .branch("main")),
+        .package(url: "https://github.com/alchemy-swift/alchemy", .upToNextMinor(from: "0.2.0")),
     ],
     targets: [
         .executableTarget(name: "Server", dependencies: [
