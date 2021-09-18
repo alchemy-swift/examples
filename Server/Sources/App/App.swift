@@ -1,9 +1,10 @@
 import Alchemy
 
-@main
-struct App: Application {
+public struct App: Application {
+    public init() {}
+    
     /// Boot the application.
-    func boot() {
+    public func boot() {
         database()
         redis()
         queue()
