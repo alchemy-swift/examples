@@ -11,7 +11,7 @@ let package = Package(
         .library(name: "App", targets: ["App"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/alchemy-swift/alchemy", .upToNextMinor(from: "0.2.0")),
+        .package(url: "https://github.com/alchemy-swift/alchemy", from: "0.3.0"),
     ],
     targets: [
         .executableTarget(name: "Server", dependencies: ["App"]),
