@@ -3,6 +3,10 @@ import Alchemy
 @main
 struct App: Application {
     
+    var commands: [Command.Type] = [
+        LogUsers.self
+    ]
+    
     /// Boot the application.
     
     func boot() {

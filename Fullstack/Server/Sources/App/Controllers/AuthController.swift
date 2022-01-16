@@ -14,28 +14,29 @@ struct AuthController: Controller {
             .on(api.login, use: login)
     }
     
-    private func signup(req: Request, dto: AuthAPI.SignupRequest) throws -> EventLoopFuture<AuthAPI.TokenDTO> {
-        let conflictError = HTTPError(.conflict, message: "A user with that email exists.")
-        return User
-            .ensureNotExists("email" == dto.email, else: conflictError)
-            .flatMapThrowing {
-                User(email: dto.email, password: try Bcrypt.hash(dto.password), name: dto.name)
-            }
-            .flatMap { $0.save() }
-            .flatMap { $0.createNewToken() }
-            .map { AuthAPI.TokenDTO(value: $0.value) }
+    private func signup(req: Request, dto: SignupRequest) async throws -> TokenDTO {
+        guard try await User.find("email" == dto.email) == nil else {
+            throw HTTPError(.conflict, message: "A user with that email exists.")
+        }
+        
+        let passwordHash = try await Bcrypt.hash(dto.password)
+        return try await User(email: dto.email, password: passwordHash, name: dto.name).save().createToken().dto
     }
     
-    private func login(req: Request, dto: AuthAPI.LoginRequest) throws -> EventLoopFuture<AuthAPI.TokenDTO> {
-        User.authenticate(username: dto.email, password: dto.password)
-            .flatMap { $0.createNewToken() }
-            .map { AuthAPI.TokenDTO(value: $0.value) }
+    private func login(req: Request, dto: LoginRequest) async throws -> TokenDTO {
+        try await User.authenticate(username: dto.email, password: dto.password).createToken().dto
+    }
+}
+
+private extension UserToken {
+    var dto: TokenDTO {
+        TokenDTO(value: value)
     }
 }
 
 private extension User {
     /// Creates a new token for this user.
-    func createNewToken() -> EventLoopFuture<UserToken> {
-        return UserToken(user: self).save()
+    func createToken() async throws -> UserToken {
+        try await UserToken(user: self).save()
     }
 }

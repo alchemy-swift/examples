@@ -1,4 +1,5 @@
 import Alchemy
+import Plot
 
 struct HomeView: HTMLView {
     let greetings: [String]

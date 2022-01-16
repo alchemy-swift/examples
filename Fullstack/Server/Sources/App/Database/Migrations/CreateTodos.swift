@@ -1,6 +1,6 @@
 import Alchemy
 
-struct CreateTodosTable: Migration {
+struct CreateTodos: Migration {
     func up(schema: Schema) {
         schema.create(table: "todos") {
             $0.increments("id").primary()

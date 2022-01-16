@@ -16,46 +16,37 @@ struct TodoController: Controller {
             .on(api.complete, use: complete)
     }
     
-    private func getAll(req: Request) throws -> EventLoopFuture<[TodoAPI.TodoDTO]> {
+    private func getAll(req: Request) async throws -> [TodoDTO] {
         let user = try req.get(User.self)
-        return Todo
-            .allWhere("user_id" == user.id)
-            .mapEach { $0.toDTO() }
+        return try await Todo.allWhere("user_id" == user.id).map { $0.dto }
     }
     
-    private func create(req: Request, dto: TodoAPI.CreateTodoRequest) throws -> EventLoopFuture<TodoAPI.TodoDTO> {
+    private func create(req: Request, dto: CreateTodoRequest) async throws -> TodoDTO {
         let user = try req.get(User.self)
-        return Todo(name: dto.name, isComplete: false, user: user)
-            .insert()
-            .map { $0.toDTO() }
+        return try await Todo(name: dto.name, isComplete: false, user: user).insertReturn().dto
     }
     
-    private func delete(req: Request, dto: TodoAPI.DeleteTodoRequest) throws -> EventLoopFuture<Empty> {
+    private func delete(req: Request, dto: DeleteTodoRequest) async throws {
         let user = try req.get(User.self)
-        return Todo
-            .where("id" == Int(dto.todoID))
+        try await Todo
+            .where("id" == dto.todoID)
             .where("user_id" == user.id)
             .delete()
-            .emptied()
     }
     
-    private func complete(req: Request, dto: TodoAPI.CompleteTodoRequest) throws -> EventLoopFuture<TodoAPI.TodoDTO> {
-        let user = try req.get(User.self)
-        return Todo
-            .where("id" == Int(dto.todoID))
-            .where("user_id" == user.id)
-            .with(\.$user)
-            .unwrapFirst(or: HTTPError(.notFound))
-            .flatMap { todo in
-                todo.update { $0.isComplete = !$0.isComplete }
-            }
-            .map { $0.toDTO() }
+    private func complete(req: Request, dto: CompleteTodoRequest) async throws -> TodoDTO {
+        guard var todo = try await Todo
+                .where("id" == dto.todoID)
+                .where("user_id" == req.get(User.self).id)
+                .first() else { throw HTTPError(.notFound) }
+        todo.isComplete = !todo.isComplete
+        return try await todo.save().dto
     }
 }
 
 private extension Todo {
     /// Creates a new token for this user.
-    func toDTO() -> TodoAPI.TodoDTO {
-        return TodoAPI.TodoDTO(id: try! getID(), name: name, isComplete: isComplete)
+    var dto: TodoDTO {
+        TodoDTO(id: try! getID(), name: name, isComplete: isComplete)
     }
 }

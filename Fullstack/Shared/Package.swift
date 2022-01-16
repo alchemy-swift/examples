@@ -11,7 +11,7 @@ let package = Package(
         .library(name: "Shared", targets: ["Shared"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/alchemy-swift/papyrus", .upToNextMajor(from: "0.1.0"))
+        .package(url: "https://github.com/alchemy-swift/papyrus", .branch("main"))
     ],
     targets: [
         .target(

@@ -1,7 +1,6 @@
 import Alchemy
 
-struct CreateUsersTable: Migration {
-    /// Run the migrations.
+struct CreateUsers: Migration {
     func up(schema: Schema) {
         schema.create(table: "users") {
             $0.increments("id").primary()
@@ -18,7 +17,6 @@ struct CreateUsersTable: Migration {
         }
     }
     
-    /// Reverse the migrations.
     func down(schema: Schema) {
         schema.drop(table: "user_tokens")
         schema.drop(table: "users")
