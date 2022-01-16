@@ -5,35 +5,34 @@ struct AuthController: Controller {
     ///
     /// - Parameter router: The Router on which to add handlers.
     func route(_ app: Application) {
-        app.post("/signup", handler: signup)
+        app.post("/signup", use: signup)
         
         // Only apply basic auth middleware to the `/login` endpoint.
-        app.group(middleware: User.basicAuthMiddleware()) {
-            $0.post("/login", handler: login)
+        app.group(User.basicAuthMiddleware()) {
+            $0.post("/login", use: login)
         }
     }
     
-    private func signup(req: Request) throws -> EventLoopFuture<UserToken> {
+    private func signup(req: Request) async throws -> UserToken {
         struct SignupBody: Codable {
             let email: String
             let password: String
         }
         
-        let body: SignupBody = try req.decodeBody()
-        let newUser = User(email: body.email, password: try Bcrypt.hash(body.password))
-        return newUser.save()
-            .flatMap { $0.createNewToken() }
+        let body = try req.decode(SignupBody.self)
+        return try await User(email: body.email, password: Bcrypt.hash(body.password))
+            .save()
+            .createToken()
     }
     
-    private func login(req: Request) throws -> EventLoopFuture<UserToken> {
-        return try req.get(User.self)
-            .createNewToken()
+    private func login(req: Request) async throws -> UserToken {
+        try await req.get(User.self).createToken()
     }
 }
 
 private extension User {
     /// Creates a new token for this user.
-    func createNewToken() -> EventLoopFuture<UserToken> {
-        return UserToken(user: self).save()
+    func createToken() async throws -> UserToken {
+        try await UserToken(user: self).save()
     }
 }

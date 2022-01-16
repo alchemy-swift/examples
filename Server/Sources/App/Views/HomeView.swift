@@ -1,4 +1,5 @@
 import Alchemy
+import Plot
 
 struct HomeView: HTMLView {
     let greetings: [String]
@@ -8,7 +9,7 @@ struct HomeView: HTMLView {
         HTML(
             .head(
                 .title("My website"),
-                // Be sure to use a `StaticFileMiddleware` on your app
+                // Be sure to use a `FileMiddleware` on your app
                 // so that related resources (css, js, images, etc)
                 // can be loaded by the browser.
                 .stylesheet("styles/home.css"),

@@ -1,23 +1,21 @@
-// swift-tools-version:5.4
+// swift-tools-version:5.5
 import PackageDescription
 
 let package = Package(
-    name: "Server",
+    name: "App",
     platforms: [
-        .macOS(.v10_15)
+        .macOS(.v12)
     ],
     products: [
-        .executable(name: "Server", targets: ["Server"]),
-        .library(name: "App", targets: ["App"]),
+        .executable(name: "App", targets: ["App"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/alchemy-swift/alchemy", from: "0.3.0"),
+        .package(url: "https://github.com/alchemy-swift/alchemy", .branch("main")),
     ],
     targets: [
-        .executableTarget(name: "Server", dependencies: ["App"]),
-        .target(name: "App", dependencies: [
+        .executableTarget(name: "App", dependencies: [
             .product(name: "Alchemy", package: "alchemy")
         ]),
-        .testTarget(name: "AppTests", dependencies: ["App"]),
+        .testTarget(name: "Tests", dependencies: ["App"]),
     ]
 )

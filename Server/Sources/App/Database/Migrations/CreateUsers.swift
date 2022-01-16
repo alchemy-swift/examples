@@ -1,6 +1,6 @@
 import Alchemy
 
-struct CreateUsersTable: Migration {
+struct CreateUsers: Migration {
     /// Run the migrations.
     func up(schema: Schema) {
         schema.create(table: "users") {
