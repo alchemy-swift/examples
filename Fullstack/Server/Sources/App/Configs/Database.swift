@@ -4,7 +4,8 @@ extension Database: Configurable {
     public static var config: Config {
         Config(
             databases: [
-                .default: .postgres(
+                .default: .sqlite,
+                .postgres: .postgres(
                     host: Env.DB_HOST ?? "localhost",
                     database: Env.DB ?? "db",
                     username: Env.DB_USER ?? "user",
@@ -46,4 +47,5 @@ extension RedisClient.Identifier {
 
 extension Database.Identifier {
     static let mysql: Database.Identifier = "mysql"
+    static let postgres: Database.Identifier = "postgres"
 }

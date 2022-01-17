@@ -16,7 +16,7 @@
 		036E77602582ACFD00B39231 /* Shared in Frameworks */ = {isa = PBXBuildFile; productRef = 036E775F2582ACFD00B39231 /* Shared */; };
 		03888DE125AD2DBC00E3E4B7 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03888DE025AD2DBC00E3E4B7 /* AuthView.swift */; };
 		03888DE525AD2DD300E3E4B7 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03888DE425AD2DD300E3E4B7 /* HomeView.swift */; };
-		03889DEE25AD37290000FDB0 /* Storage+API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03889DED25AD37290000FDB0 /* Storage+API.swift */; };
+		03889DEE25AD37290000FDB0 /* APIs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03889DED25AD37290000FDB0 /* APIs.swift */; };
 		03ABEF5525AD2ED7009D00B2 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03ABEF5425AD2ED7009D00B2 /* Storage.swift */; };
 /* End PBXBuildFile section */
 
@@ -32,7 +32,7 @@
 		0335BE4A2582AC02007E3800 /* Server */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Server; sourceTree = "<group>"; };
 		03888DE025AD2DBC00E3E4B7 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
 		03888DE425AD2DD300E3E4B7 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
-		03889DED25AD37290000FDB0 /* Storage+API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Storage+API.swift"; sourceTree = "<group>"; };
+		03889DED25AD37290000FDB0 /* APIs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIs.swift; sourceTree = "<group>"; };
 		03ABEF5425AD2ED7009D00B2 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -73,7 +73,7 @@
 			children = (
 				0300F79A2582A74E003A1238 /* QuickstartApp.swift */,
 				03889DF725AD3FA20000FDB0 /* Views */,
-				03889DF625AD3F970000FDB0 /* Storage */,
+				03889DF625AD3F970000FDB0 /* Core */,
 				0300F79E2582A74F003A1238 /* Assets.xcassets */,
 				0300F7A32582A74F003A1238 /* Info.plist */,
 				0300F7A02582A74F003A1238 /* Preview Content */,
@@ -96,13 +96,13 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		03889DF625AD3F970000FDB0 /* Storage */ = {
+		03889DF625AD3F970000FDB0 /* Core */ = {
 			isa = PBXGroup;
 			children = (
 				03ABEF5425AD2ED7009D00B2 /* Storage.swift */,
-				03889DED25AD37290000FDB0 /* Storage+API.swift */,
+				03889DED25AD37290000FDB0 /* APIs.swift */,
 			);
-			path = Storage;
+			path = Core;
 			sourceTree = "<group>";
 		};
 		03889DF725AD3FA20000FDB0 /* Views */ = {
@@ -196,7 +196,7 @@
 				0300F79B2582A74E003A1238 /* QuickstartApp.swift in Sources */,
 				03888DE125AD2DBC00E3E4B7 /* AuthView.swift in Sources */,
 				0309B48825AD8A8300386B59 /* CreateTodoView.swift in Sources */,
-				03889DEE25AD37290000FDB0 /* Storage+API.swift in Sources */,
+				03889DEE25AD37290000FDB0 /* APIs.swift in Sources */,
 				03ABEF5525AD2ED7009D00B2 /* Storage.swift in Sources */,
 				0309B48E25AE546A00386B59 /* ActionButton.swift in Sources */,
 			);
@@ -391,8 +391,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/alchemy-swift/papyrus-alamofire";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.1.0;
+				branch = main;
+				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
