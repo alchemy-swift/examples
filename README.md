@@ -1,10 +1,9 @@
-# Alchemy example apps
+# Alchemy Examples
 
-This repository contains ready to use Alchemy example apps. These projects are used as templates when using the `alchemy new` command.
+This repository contains ready to use Alchemy example apps.
 
-| App | Description |
-| - | - |
-| [Server](/Server) | A basic Alchemy server app. |
-| [Fullstack](/Fullstack) | A fullstack project containing Server and iOS targets with a Shared framework. Demonstrates using [Papyrus](https://github.com/alchemy-swift/papyrus) to keep your APIs typesafe between client and server. |
+| App           | Description                                                                      |
+| ------------- | -------------------------------------------------------------------------------- |
+| [Demo](/demo) | A template app showing Env, Middleware, Jobs, Commands, Scheduled Tasks & Tests. |
 
 Feel free to open a PR to add additional examples.
