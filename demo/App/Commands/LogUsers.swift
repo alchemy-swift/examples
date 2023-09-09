@@ -2,9 +2,9 @@ import Alchemy
 
 struct LogUsers: Command {
     
-    /// Run this command with `swift run app print:users`
+    /// Run this command with `swift run app log:users`
 
-    static let name = "print:users"
+    static let name = "log:users"
 
     func run() async throws {
         for user in try await User.all() {
