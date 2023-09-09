@@ -9,7 +9,7 @@ extension App {
 
             /// Your default Database
 
-            default: Env.isTesting ? .sqlite : .postgres,
+            default: .sqlite /* Env.isTesting ? .sqlite : .postgres */,
 
             /// Define your databases here
 
