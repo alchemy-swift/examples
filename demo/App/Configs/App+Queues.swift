@@ -22,7 +22,7 @@ extension App {
             /// Define any jobs you'll want to handle here
 
             jobs: [
-                CleanupTokensJob.self
+                CleanupTokensJob.self,
             ]
         )
     }

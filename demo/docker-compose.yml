@@ -1,0 +1,32 @@
+services:
+  redis:
+    container_name: redis
+    image: redis:7.2.1-alpine
+  app:
+    container_name: app
+    image: alchemy-app:latest
+    build:
+      context: .
+    ports:
+      - '3000:3000'
+    command: [ "serve", "--host", "0.0.0.0", "--port", "3000" ]
+    depends_on:
+      - redis
+    environment:
+      - REDIS_HOST=redis
+  worker:
+    container_name: worker
+    image: alchemy-app:latest
+    command: [ "queue:work", "--workers", "1" ]
+    depends_on:
+      - redis
+    environment:
+      - REDIS_HOST=redis
+  scheduler:
+    container_name: scheduler
+    image: alchemy-app:latest
+    command: [ "schedule" ]
+    depends_on:
+      - redis
+    environment:
+      - REDIS_HOST=redis

@@ -35,7 +35,7 @@ extension App {
             /// Seeders for your database
 
             seeders: [
-                SeedUsers()
+                SeedUsers(),
             ],
 
             /// Your default Redis
@@ -46,7 +46,7 @@ extension App {
 
             redis: [
                 .primary: .connection(
-                    Env.REDIS_HOST ?? "localhost",
+                    host: Env.REDIS_HOST ?? "localhost",
                     port: Env.REDIS_PORT ?? 6379
                 ),
             ]
