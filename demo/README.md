@@ -1,11 +1,13 @@
 # Demo
 
-A quickstart alchemy application. This is the starting point for a new Alchemy project.
+A quickstart alchemy application. This is the starting point for creating a new Alchemy project.
 
 It has a few endpoints that demonstrate Routing, Middleware, Authorization, and Controller basics.
 
 `POST /signup`: Signup with a username and password.
+
 `POST /login`: Use basic auth to log in, returning an access token.
+
 `GET /user`: Get the currently logged in user, if authorized with token auth.
 
 It also demonstrates some basics around Jobs, Scheduled Tasks, Database Access, Migrations, Seeding, and Testing.
